@@ -1,7 +1,5 @@
 define(function() {
 
-  console.log("pairingRate");
-
     var init = function(element) {
 
         an.data("co.torri.dod.analysis.PairingRateAnalyzer", function(data, desc) {

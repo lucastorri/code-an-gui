@@ -1,8 +1,8 @@
-requirejs.config({
-    baseUrl: 'visualizer'
-});
-
 var an = (function() {
+    requirejs.config({
+        baseUrl: 'visualizer'
+    });
+
     var data = function(analyzer, onData) {
         $.get("/data/" + analyzer, function(d) {
             onData(d.data, d.desc);
