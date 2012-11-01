@@ -1,47 +1,55 @@
-(function() {
+define(function() {
 
-    var width = 300,
-        height = 200,
-        radius = Math.min(width, height) / 2;
+  console.log("pairingRate");
 
-    var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6"]);
+    var init = function(element) {
 
-    var arc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(0);
+        an.data("co.torri.dod.analysis.PairingRateAnalyzer", function(data, desc) {
 
-    var pie = d3.layout.pie()
-        .sort(null)
-        .value(function(d) { return d["%"]; });
+          var h3 = d3.select("#"+element.attr("id")).append("h3")
+          h3.text(desc);
 
-    var h1 = d3.select("body").append("h1")
+          var width = element.width(),
+            height = element.height() - $("#"+element.attr("id")).find("h3").height(),
+            radius = Math.min(width, height) / 2;
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+          var color = d3.scale.ordinal()
+              .range(["#98abc5", "#8a89a6"]);
 
-    an.data("co.torri.dod.analysis.PairingRateAnalyzer", function(data, desc) {
+          var arc = d3.svg.arc()
+              .outerRadius(radius - 10)
+              .innerRadius(0);
 
-      h1.text(desc);
+          var pie = d3.layout.pie()
+              .sort(null)
+              .value(function(d) { return d["%"]; });
 
-      var g = svg.selectAll(".arc")
-          .data(pie(data))
-          .enter().append("g")
-          .attr("class", "arc");
+          var svg = d3.select("#"+element.attr("id")).append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-      g.append("path")
-          .attr("d", arc)
-          .style("fill", function(d) { return color(d.data.pairing); });
+          var g = svg.selectAll(".arc")
+              .data(pie(data))
+              .enter().append("g")
+              .attr("class", "arc");
 
-      g.append("text")
-          .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-          .attr("dy", ".35em")
-          .style("text-anchor", "middle")
-          .text(function(d) { return d.data.pairing; });
+          g.append("path")
+              .attr("d", arc)
+              .style("fill", function(d) { return color(d.data.pairing); });
 
-    });
+          g.append("text")
+              .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+              .attr("dy", ".35em")
+              .style("text-anchor", "middle")
+              .text(function(d) { return d.data.pairing; });
 
-})();
+        });
+    };
+
+    return {
+        init: init
+    };
+
+});
