@@ -6,7 +6,7 @@ define(function() {
             var h3 = d3.select("#"+element.attr("id")).append("h3")
               h3.text(desc);
 
-            data = data.filter(function(e) {return e.project == project; }).slice(0,8);
+            data = data.filter(function(e) {return e.project == project; }).slice(0,10);
 
             console.log(data);
 
