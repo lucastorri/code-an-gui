@@ -9,10 +9,6 @@ var an = (function() {
         });
     };
 
-    var load = function(visualizers) {
-
-    }
-
     return {
         data: data
     };
