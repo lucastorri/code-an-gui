@@ -46,8 +46,8 @@ body {
 }
 
 .pairing.true {
-    fill: #3d3;
+    fill: steelblue;
 }
 .pairing.false {
-    fill: #d33;
+    fill: indianred;
 }
