@@ -29,17 +29,25 @@ body {
     font: 10px sans-serif;
 }
 
+
+/* visualizer specific */
+
 .axis path,
 .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
-
 .bar {
-  fill: steelblue;
+    fill: steelblue;
+}
+.x.axis path {
+    display: none;
 }
 
-.x.axis path {
-  display: none;
+.pairing.true {
+    fill: #3d3;
+}
+.pairing.false {
+    fill: #d33;
 }

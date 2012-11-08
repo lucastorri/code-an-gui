@@ -11,6 +11,9 @@ get '/' do
   erb :index
 end
 
+get '/project/:project' do
+    erb :project
+end
 
 get '/workspace/:workspace' do
     erb :workspace

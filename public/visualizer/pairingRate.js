@@ -1,11 +1,14 @@
 define(function() {
 
-    return function(element) {
+    return function(element, project) {
+        project = project.toUpperCase();
 
         an.data("co.torri.dod.analysis.PairingRateAnalyzer", function(data, desc) {
 
           var h3 = d3.select("#"+element.attr("id")).append("h3")
           h3.text(desc);
+
+          data = data.filter(function(d) { return d.project == project; });
 
           var width = element.width(),
             height = element.height() - $("#"+element.attr("id")).find("h3").height(),
@@ -20,7 +23,7 @@ define(function() {
 
           var pie = d3.layout.pie()
               .sort(null)
-              .value(function(d) { return d["%"]; });
+              .value(function(d) { return d.nstories; });
 
           var svg = d3.select("#"+element.attr("id")).append("svg")
             .attr("width", width)
@@ -35,7 +38,7 @@ define(function() {
 
           g.append("path")
               .attr("d", arc)
-              .style("fill", function(d) { return color(d.data.pairing); });
+              .attr("class", function(d) { return "pairing " + d.data.pairing; });
 
           g.append("text")
               .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
