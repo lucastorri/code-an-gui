@@ -8,8 +8,6 @@ define(function() {
 
             data = data.filter(function(e) {return e.project == project; }).slice(0,10);
 
-            console.log(data);
-
             var margin = {top: 10, right: 10, bottom: 30, left: 40},
                 width = element.width() - margin.left - margin.right,
                 height = element.height() - margin.top - margin.bottom;
