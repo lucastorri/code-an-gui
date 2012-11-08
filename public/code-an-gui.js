@@ -10,20 +10,20 @@ var an = (function() {
     };
 
     var load = function(visualizers) {
-        requirejs(visualizers, function() {
-            for (var i = 0; i < arguments.length; i++) {
-                var visualizer = arguments[i];
-                visualizer.init($("#"+visualizers[i]));
-            }
-        });
+
     }
 
     return {
-        data: data,
-        load: load
+        data: data
     };
 })();
 
 
-
-an.load(["pairingRate"])
+$(function() {
+    var visualizers = $("#visualizers").find("div").map(function(i,e) { return e.id; });
+    requirejs(visualizers, function() {
+        $(arguments).each(function(i, visualizer) {
+            visualizer.init($("#"+visualizer));
+        });
+    });
+});
