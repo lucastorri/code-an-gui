@@ -11,6 +11,11 @@ get '/' do
   erb :index
 end
 
+
+get '/workspace/:workspace' do
+    erb :workspace
+end
+
 get '/data/:analyzer' do
     content_type :json
     db[params[:analyzer]].find_one.to_json

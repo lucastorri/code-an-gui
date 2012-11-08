@@ -1,6 +1,6 @@
 var an = (function() {
     requirejs.config({
-        baseUrl: 'visualizer'
+        baseUrl: '/visualizer'
     });
 
     var data = function(analyzer, onData) {
@@ -16,10 +16,13 @@ var an = (function() {
 
 
 $(function() {
+    var token = location.pathname.match($(["/project/(.*)", "/user/(.*)", "/workspace/(.*)"])
+        .filter(function(i,regex) { return location.pathname.match(regex); })[0])[1] || "";
+
     var visualizers = $("#visualizers").find("div").map(function(i,e) { return e.id; });
-    requirejs(visualizers, function() {
+    requirejs(visualizers.toArray(), function() {
         $(arguments).each(function(i, visualizer) {
-            visualizer.init($("#"+visualizer));
+            visualizer($("#"+visualizers[i]), token);
         });
     });
 

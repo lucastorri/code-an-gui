@@ -1,6 +1,6 @@
 define(function() {
 
-    var init = function(element) {
+    return function(element) {
 
         an.data("co.torri.dod.analysis.PairingRateAnalyzer", function(data, desc) {
 
@@ -44,10 +44,6 @@ define(function() {
               .text(function(d) { return d.data.pairing; });
 
         });
-    };
-
-    return {
-        init: init
     };
 
 });
