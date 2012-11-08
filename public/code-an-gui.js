@@ -22,4 +22,11 @@ $(function() {
             visualizer.init($("#"+visualizer));
         });
     });
+
+    $(function(){
+        $('#container').masonry({
+            itemSelector : '.tile',
+            columnWidth : 300
+        });
+    });
 });

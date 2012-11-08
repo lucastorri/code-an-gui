@@ -1,0 +1,15 @@
+#visualizers {
+    text-align: center;
+}
+h3 {
+    margin: 0;
+    text-align: center;
+}
+.tile {
+    background-color: #eee;
+    float: left;
+}
+.box_1_1 {
+    height: 300px;
+    width: 300px;
+}
