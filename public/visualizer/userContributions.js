@@ -1,12 +1,16 @@
 define(function() {
-    return function(tile, workspace) {
-        an.data("co.torri.dod.analysis.CommitersPerWorkspacePerMonthAnalyzer", function(data) {
+    return function(tile, user) {
+        an.data("co.torri.dod.analysis.WorkspaceContributions", function(contributions) {
 
-            tile.title("Unique Commiters per Month");
+            tile.title("Workspace Contributions")
 
-            data = data.filter(function(e) { return e.workspace == workspace; });
+            var data = contributions.filter(function(c) {
+                return c.author == user;
+            });
 
-            var margin = {top: 10, right: 10, bottom: 30, left: 40},
+            console.log(userContributions)
+
+            var margin = {top: 10, right: 10, bottom: 25, left: 40},
                 width = tile.width() - margin.left - margin.right,
                 height = tile.height() - margin.top - margin.bottom;
 
@@ -35,11 +39,11 @@ define(function() {
 
 
             data.forEach(function(d) {
-                d.commiters = +d.commiters;
+                d.checkins = +d.checkins;
             });
 
-            x.domain(data.map(function(d) { return d.month + "-" + d.year.toString().substring(2); }));
-            y.domain([0, d3.max(data, function(d) { return d.commiters; })]);
+            x.domain(data.map(function(d) { return d.workspace; }));
+            y.domain([0, d3.max(data, function(d) { return d.checkins; })]);
 
             svg.append("g")
               .attr("class", "x axis")
@@ -54,18 +58,16 @@ define(function() {
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
-              .text("Commiters");
+              .text("Checkins");
 
             svg.selectAll(".bar")
               .data(data)
             .enter().append("rect")
               .attr("class", "bar")
-              .attr("x", function(d) { return x(d.month + "-" + d.year.toString().substring(2)); })
+              .attr("x", function(d) { return x(d.workspace); })
               .attr("width", x.rangeBand())
-              .attr("y", function(d) { return y(d.commiters); })
-              .attr("height", function(d) { return height - y(d.commiters); });
-
-
+              .attr("y", function(d) { return y(d.checkins); })
+              .attr("height", function(d) { return height - y(d.checkins); });
 
         });
     };

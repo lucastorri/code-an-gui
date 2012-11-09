@@ -1,16 +1,24 @@
 .tile {
     background-color: #fffff7;
     box-shadow: 3px 3px 30px #eeeeee;
-    margin: 3px;
+    margin: 1px;
     float: left;
 }
 .box_1_1 {
-    width: 300px;
+    width: 299px;
     height: 300px;
 }
+.box_1_2 {
+    width: 299px;
+    height: 600px;
+}
 .box_2_1 {
-    width: 600px;
+    width: 599px;
     height: 300px;
+}
+.box_2_2 {
+    width: 599px;
+    height: 600px;
 }
 .box_3_1 {
     width: 900px;

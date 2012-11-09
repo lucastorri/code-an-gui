@@ -3,12 +3,11 @@ define(function() {
         project = project.toUpperCase();
         an.data("co.torri.dod.analysis.CommitsPerWorkspacePerProjectAnalyzer", function(data) {
 
-            var h3 = d3.select(tile.id).append("h3")
-              h3.text("Workspaces Contributions");
+            tile.title("Workspaces Contributions");
 
             data = data.filter(function(e) {return e.project == project; }).slice(0,10);
 
-            var margin = {top: 10, right: 10, bottom: 30, left: 40},
+            var margin = {top: 10, right: 10, bottom: 25, left: 40},
                 width = tile.width() - margin.left - margin.right,
                 height = tile.height() - margin.top - margin.bottom;
 

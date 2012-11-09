@@ -7,8 +7,7 @@ define(function() {
 
             an.data("co.torri.dod.analysis.ModificationPerAuthorAnalyzer", function(modifications) {
 
-                var h3 = $("<h3>User Rank</h3>")
-                tile.element.append(h3);
+                tile.title("User Rank");
 
                 var checkinsRank = checkins.map(function(e,i) {
                     return {rank: i + 1, obj: e};
