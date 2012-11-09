@@ -1,10 +1,10 @@
 define(function() {
     return function(element, project) {
         project = project.toUpperCase();
-        an.data("co.torri.dod.analysis.CommitsPerWorkspacePerProjectAnalyzer", function(data, desc) {
+        an.data("co.torri.dod.analysis.CommitsPerWorkspacePerProjectAnalyzer", function(data) {
 
             var h3 = d3.select("#"+element.attr("id")).append("h3")
-              h3.text(desc);
+              h3.text("Workspaces Contributions");
 
             data = data.filter(function(e) {return e.project == project; }).slice(0,10);
 

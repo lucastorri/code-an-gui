@@ -1,9 +1,9 @@
 define(function() {
     return function(element, workspace) {
-        an.data("co.torri.dod.analysis.CommitersPerWorkspacePerMonthAnalyzer", function(data, desc) {
+        an.data("co.torri.dod.analysis.CommitersPerWorkspacePerMonthAnalyzer", function(data) {
 
             var h3 = d3.select("#"+element.attr("id")).append("h3")
-              h3.text(desc);
+              h3.text("Unique Commiters per Month");
 
             var pacmanData = data.filter(function(e) {return e.workspace == workspace; });
 

@@ -21,5 +21,5 @@ end
 
 get '/data/:analyzer' do
     content_type :json
-    db[params[:analyzer]].find_one.to_json
+    db[params[:analyzer]].find.to_a.to_json
 end
