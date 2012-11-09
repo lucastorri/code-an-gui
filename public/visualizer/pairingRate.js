@@ -1,17 +1,17 @@
 define(function() {
 
-    return function(element, project) {
+    return function(tile, project) {
         project = project.toUpperCase();
 
         an.data("co.torri.dod.analysis.PairingRateAnalyzer", function(data) {
 
-          var h3 = d3.select("#"+element.attr("id")).append("h3")
+          var h3 = d3.select(tile.id).append("h3")
           h3.text("Pairing");
 
           data = data.filter(function(d) { return d.project == project; });
 
-          var width = element.width(),
-            height = element.height() - $("#"+element.attr("id")).find("h3").height(),
+          var width = tile.width(),
+            height = tile.height() - $(tile.id).find("h3").height(),
             radius = Math.min(width, height) / 2;
 
           var color = d3.scale.ordinal()
@@ -25,7 +25,7 @@ define(function() {
               .sort(null)
               .value(function(d) { return d.nstories; });
 
-          var svg = d3.select("#"+element.attr("id")).append("svg")
+          var svg = d3.select(tile.id).append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")

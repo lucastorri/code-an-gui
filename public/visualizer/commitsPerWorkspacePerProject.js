@@ -1,16 +1,16 @@
 define(function() {
-    return function(element, project) {
+    return function(tile, project) {
         project = project.toUpperCase();
         an.data("co.torri.dod.analysis.CommitsPerWorkspacePerProjectAnalyzer", function(data) {
 
-            var h3 = d3.select("#"+element.attr("id")).append("h3")
+            var h3 = d3.select(tile.id).append("h3")
               h3.text("Workspaces Contributions");
 
             data = data.filter(function(e) {return e.project == project; }).slice(0,10);
 
             var margin = {top: 10, right: 10, bottom: 30, left: 40},
-                width = element.width() - margin.left - margin.right,
-                height = element.height() - margin.top - margin.bottom;
+                width = tile.width() - margin.left - margin.right,
+                height = tile.height() - margin.top - margin.bottom;
 
             var formatPercent = d3.format("");
 
@@ -29,7 +29,7 @@ define(function() {
                 .orient("left")
                 .tickFormat(formatPercent);
 
-            var svg = d3.select("#"+element.attr("id")).append("svg")
+            var svg = d3.select(tile.id).append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
               .append("g")
