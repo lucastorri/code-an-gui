@@ -19,6 +19,10 @@ get '/workspace/:workspace' do
     erb :workspace
 end
 
+get '/user/:user' do
+    erb :user
+end
+
 get '/data/:analyzer' do
     content_type :json
     db[params[:analyzer]].find.to_a.to_json

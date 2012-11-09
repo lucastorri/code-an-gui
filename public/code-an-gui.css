@@ -49,9 +49,34 @@ body {
     display: none;
 }
 
-.pairing.true {
+#pairingRate .pairing.true {
     fill: steelblue;
 }
-.pairing.false {
+#pairingRate .pairing.false {
     fill: indianred;
+}
+
+#userRank {
+    vertical-align: middle;
+}
+#userRank .content {
+    margin-top: 20px;
+}
+#userRank p {
+    margin: 0 0 0 0;
+    vertical-align: middle;
+}
+#userRank p.info {
+    font-size: 90px;
+    margin-bottom: 20px;
+    color: steelblue;
+}
+#userRank span {
+    font-weight: bold;
+}
+#userRank .added {
+    color: green;
+}
+#userRank .removed {
+    color: crimson;
 }
