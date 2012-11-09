@@ -3,9 +3,9 @@ define(function() {
         an.data("co.torri.dod.analysis.CommitersPerWorkspacePerMonthAnalyzer", function(data) {
 
             var h3 = d3.select("#"+element.attr("id")).append("h3")
-              h3.text("Unique Commiters per Month");
+            h3.text("Unique Commiters per Month");
 
-            var pacmanData = data.filter(function(e) {return e.workspace == workspace; });
+            data = data.filter(function(e) {return e.workspace == workspace; });
 
             var margin = {top: 10, right: 10, bottom: 30, left: 40},
                 width = element.width() - margin.left - margin.right,
@@ -35,12 +35,12 @@ define(function() {
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-            pacmanData.forEach(function(d) {
+            data.forEach(function(d) {
                 d.commiters = +d.commiters;
             });
 
-            x.domain(pacmanData.map(function(d) { return d.month + "-" + d.year.toString().substring(2); }));
-            y.domain([0, d3.max(pacmanData, function(d) { return d.commiters; })]);
+            x.domain(data.map(function(d) { return d.month + "-" + d.year.toString().substring(2); }));
+            y.domain([0, d3.max(data, function(d) { return d.commiters; })]);
 
             svg.append("g")
               .attr("class", "x axis")
@@ -58,7 +58,7 @@ define(function() {
               .text("Commiters");
 
             svg.selectAll(".bar")
-              .data(pacmanData)
+              .data(data)
             .enter().append("rect")
               .attr("class", "bar")
               .attr("x", function(d) { return x(d.month + "-" + d.year.toString().substring(2)); })
